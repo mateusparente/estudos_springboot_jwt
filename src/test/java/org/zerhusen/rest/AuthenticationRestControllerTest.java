@@ -5,6 +5,16 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import br.com.teste.model.security.Authority;
+import br.com.teste.model.security.AuthorityName;
+import br.com.teste.model.usuario.Usuario;
+import br.com.teste.security.JwtAuthenticationRequest;
+import br.com.teste.security.JwtTokenUtil;
+import br.com.teste.security.JwtUser;
+import br.com.teste.security.JwtUserFactory;
+import br.com.teste.security.service.JwtUserDetailsService;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,14 +29,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import org.zerhusen.model.security.Authority;
-import org.zerhusen.model.security.AuthorityName;
-import org.zerhusen.model.usuario.Usuario;
-import org.zerhusen.security.JwtAuthenticationRequest;
-import org.zerhusen.security.JwtTokenUtil;
-import org.zerhusen.security.JwtUser;
-import org.zerhusen.security.JwtUserFactory;
-import org.zerhusen.security.service.JwtUserDetailsService;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
