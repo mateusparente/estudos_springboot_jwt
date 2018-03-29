@@ -2,6 +2,11 @@ package org.zerhusen.model.security;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import org.zerhusen.model.usuario.Usuario;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 @Entity
@@ -19,8 +24,9 @@ public class Authority {
     @Enumerated(EnumType.STRING)
     private AuthorityName name;
 
+    @JsonIgnoreProperties
     @ManyToMany(mappedBy = "authorities", fetch = FetchType.LAZY)
-    private List<User> users;
+    private List<Usuario> users;
 
     public Long getId() {
         return id;
@@ -38,11 +44,11 @@ public class Authority {
         this.name = name;
     }
 
-    public List<User> getUsers() {
+    public List<Usuario> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(List<Usuario> users) {
         this.users = users;
     }
 }

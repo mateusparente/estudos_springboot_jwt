@@ -21,7 +21,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.zerhusen.model.security.Authority;
 import org.zerhusen.model.security.AuthorityName;
-import org.zerhusen.model.security.User;
+import org.zerhusen.model.usuario.Usuario;
 import org.zerhusen.security.JwtAuthenticationRequest;
 import org.zerhusen.security.JwtTokenUtil;
 import org.zerhusen.security.JwtUser;
@@ -83,7 +83,7 @@ public class AuthenticationRestControllerTest {
         authority.setName(AuthorityName.ROLE_USER);
         List<Authority> authorities = Arrays.asList(authority);
 
-        User user = new User();
+        Usuario user = new Usuario();
         user.setUsername("username");
         user.setAuthorities(authorities);
         user.setEnabled(Boolean.TRUE);
@@ -111,7 +111,7 @@ public class AuthenticationRestControllerTest {
         authority.setName(AuthorityName.ROLE_ADMIN);
         List<Authority> authorities = Arrays.asList(authority);
 
-        User user = new User();
+        Usuario user = new Usuario();
         user.setUsername("admin");
         user.setAuthorities(authorities);
         user.setEnabled(Boolean.TRUE);

@@ -1,4 +1,4 @@
-package org.zerhusen.model.security;
+package org.zerhusen.model.usuario;
 
 import java.util.Date;
 import java.util.List;
@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -19,12 +20,16 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.zerhusen.model.security.Authority;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name = "USER")
-public class User {
+@Table(name = "USUARIO")
+public class Usuario {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "USUARIO_ID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     @SequenceGenerator(name = "user_seq", sequenceName = "user_seq", allocationSize = 1)
     private Long id;
@@ -58,19 +63,33 @@ public class User {
     @NotNull
     private Boolean enabled;
 
+    @JsonIgnore
     @Column(name = "LASTPASSWORDRESETDATE")
     @Temporal(TemporalType.TIMESTAMP)
-    @NotNull
     private Date lastPasswordResetDate;
 
+    @JsonIgnore
+    @OneToMany(mappedBy="usuario", fetch=FetchType.LAZY)
+    private List<HoraDoUsuario> horasTrabalhadas;
+    
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "USER_AUTHORITY",
-            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
+            joinColumns = {@JoinColumn(name = "USUARIO_ID", referencedColumnName = "USUARIO_ID")},
             inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
     private List<Authority> authorities;
+    
+    public Usuario() {
+		super();
+	}
 
-    public Long getId() {
+	public Usuario(Long id) {
+		super();
+		this.id = id;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -141,4 +160,12 @@ public class User {
     public void setLastPasswordResetDate(Date lastPasswordResetDate) {
         this.lastPasswordResetDate = lastPasswordResetDate;
     }
+
+	public List<HoraDoUsuario> getHorasTrabalhadas() {
+		return horasTrabalhadas;
+	}
+
+	public void setHorasTrabalhadas(List<HoraDoUsuario> horasTrabalhadas) {
+		this.horasTrabalhadas = horasTrabalhadas;
+	}
 }

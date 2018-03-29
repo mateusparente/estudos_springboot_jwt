@@ -13,7 +13,7 @@ import org.zerhusen.security.JwtTokenUtil;
 import org.zerhusen.security.JwtUser;
 
 @RestController
-public class UserRestController {
+public class UsuarioRestController {
 
     @Value("${jwt.header}")
     private String tokenHeader;

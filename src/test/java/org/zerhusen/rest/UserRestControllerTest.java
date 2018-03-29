@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.zerhusen.model.security.Authority;
 import org.zerhusen.model.security.AuthorityName;
-import org.zerhusen.model.security.User;
+import org.zerhusen.model.usuario.Usuario;
 import org.zerhusen.security.JwtTokenUtil;
 import org.zerhusen.security.JwtUser;
 import org.zerhusen.security.JwtUserFactory;
@@ -69,7 +69,7 @@ public class UserRestControllerTest {
         authority.setName(AuthorityName.ROLE_ADMIN);
         List<Authority> authorities = Arrays.asList(authority);
 
-        User user = new User();
+        Usuario user = new Usuario();
         user.setUsername("username");
         user.setAuthorities(authorities);
         user.setEnabled(Boolean.TRUE);
